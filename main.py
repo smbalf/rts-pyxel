@@ -23,7 +23,5 @@ class App:
         npc.select_npc()
         npc.move_npc()
 
-        pyxel.text(170, 1, f"{Highlight.highlight_box}", 3)
-
 
 App()

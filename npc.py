@@ -6,7 +6,6 @@ unselected_sprite = 0, 0, 0, 3, 3
 selected_sprite = 0, 4, 0, 3, 3
 
 npc_list = []
-npc_sel_list = []
 
 
 class Npc:
@@ -39,33 +38,27 @@ def draw_npcs():
 def select_npc():
     # IF NPC INSIDE BOX - BECOMES SELECTED
     if pyxel.btnr(pyxel.MOUSE_LEFT_BUTTON):
-        npc_sel_list.clear()
         for npc in npc_list:
             if pyxel.btnr(pyxel.MOUSE_LEFT_BUTTON) and npc.npc_selected:
                 npc.npc_selected = False
 
             if npc.npc_x in range(H.line_x1, H.line_x2) and npc.npc_y in range(H.line_y1, H.line_y2):
                 npc.npc_selected = True
-                npc_sel_list.append(npc)
 
             elif npc.npc_x in range(H.line_x2, H.line_x1) and npc.npc_y in range(H.line_y1, H.line_y2):
                 npc.npc_selected = True
-                npc_sel_list.append(npc)
 
             elif npc.npc_x in range(H.line_x1, H.line_x2) and npc.npc_y in range(H.line_y2, H.line_y1):
                 npc.npc_selected = True
-                npc_sel_list.append(npc)
 
             elif npc.npc_x in range(H.line_x2, H.line_x1) and npc.npc_y in range(H.line_y2, H.line_y1):
                 npc.npc_selected = True
-                npc_sel_list.append(npc)
 
 
 def move_npc():
-    for npc in npc_sel_list:
+    for npc in npc_list:
         # SETS THE DESTINATION CO-ORDINATES WHEN SELECTED AND RMB RELEASED
         if pyxel.btnr(pyxel.MOUSE_RIGHT_BUTTON) and npc.npc_selected:
-            print(npc_sel_list)
             npc.dest_x = pyxel.mouse_x
             npc.dest_y = pyxel.mouse_y
 
